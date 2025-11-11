@@ -1,0 +1,17 @@
+name: Manter Render Acordado 💤🚀
+
+on:
+  schedule:
+    # Executa a cada 10 minutos
+    - cron: "*/10 * * * *"
+  workflow_dispatch:  # Permite rodar manualmente pelo botão "Run workflow"
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pingar Render
+        run: |
+          echo "⏰ Iniciando ping para Render..."
+          curl -I https://simulador-financiamento-ju90.onrender.com || echo "Falha ao acessar Render"
+          echo "✅ Ping enviado com sucesso para o simulador!"
