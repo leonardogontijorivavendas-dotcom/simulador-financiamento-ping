@@ -10,8 +10,9 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Pingar Render
+      - name: Pingar endpoint da aplicação Render
         run: |
-          echo "⏰ Iniciando ping para Render..."
-          curl -I https://simulador-financiamento-ju90.onrender.com || echo "Falha ao acessar Render"
-          echo "✅ Ping enviado com sucesso para o simulador!"
+          echo "⏰ Enviando requisição para acordar o simulador..."
+          curl -L -s -w "%{http_code}" -o /dev/null \
+            "https://simulador-financiamento-ju90.onrender.com/api/financiamento/calcular?valorImovel=300000&entrada=50000&taxaJuros=1&prazo=360&tipo=PRICE"
+          echo "✅ Ping enviado ao endpoint da aplicação."
